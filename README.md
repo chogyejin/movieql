@@ -61,3 +61,13 @@ query {
   `echo '{"presets": ["@babel/preset-env"]}' > babel.config.json`
 
 - server.start()로 서버 시작, 아직 schema 정의가 되어 있지 않음
+
+# Creating Query and Resolver
+
+- schema : 주거나 받을 정보에 대한 서술
+  - schema.graphql : 사용자가 뭘 할지에 대해 정의한 파일
+- Query : DB로부터 정보를 받을 때
+  - 사용자가 Query에 name을 보내면 사용자에게 String을 보냄
+- Mutation : 정보를 바꿀 때
+- resolvers : schema에 정의된 Query를 해결
+  - 사용자가 name Query를 보내면 어떤 것을 return하는 함수로 대답
