@@ -1,6 +1,15 @@
+const chogyejin = {
+  name: "chogyejin",
+  age: 27,
+  gender: "male",
+};
+
 const resolvers = {
   Query: {
-    name: () => "chogyejin",
+    // person: function () {
+    //   return chogyejin;
+    // },
+    person: () => chogyejin,
   },
 };
 
