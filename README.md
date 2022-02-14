@@ -65,9 +65,63 @@ query {
 # Creating Query and Resolver
 
 - schema : 주거나 받을 정보에 대한 서술
+
   - schema.graphql : 사용자가 뭘 할지에 대해 정의한 파일
+
 - Query : DB로부터 정보를 받을 때
+
   - 사용자가 Query에 name을 보내면 사용자에게 String을 보냄
+
 - Mutation : 정보를 바꿀 때
+
 - resolvers : schema에 정의된 Query를 해결
   - 사용자가 name Query를 보내면 어떤 것을 return하는 함수로 대답
+
+# Extending the schema
+
+- Playground
+
+  - localhost:4000, endpoint는 localhost:4000/graphql
+
+  - DB 테스트 가능
+
+  - SCHEMA 탭에서 만들 수 있는 query의 설명을 볼 수 있음
+
+  ```
+  // playground example
+  // 요청
+  query {
+    name
+  }
+
+  // 응답
+  {
+    "data": {
+      "name": "chogyejin"
+    }
+  }
+  ```
+
+- Chogyejin이라는 type을 가진 person Query를 보내면 resolver가 chogyejin object를 return 함
+
+  - Playground에서 원하는 정보 요청에 대한 Graphql의 응답을 확인할 수 있음
+
+  ```
+  // 요청
+  query {
+    person {
+      age
+      name
+    }
+  }
+
+  // 응답
+  {
+    "data": {
+      "person": {
+        "age": 27,
+        "name": "chogyejin"
+      }
+    }
+  }
+  ```
