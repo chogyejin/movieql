@@ -125,3 +125,63 @@ query {
     }
   }
   ```
+
+- Person이라는 array type을 가진 people Query를 보내면 resolver가 people array를 return 함
+
+  - array 중에서도 원하는 정보(name, age)만 얻어올 수 있음
+
+  ```
+  // 요청
+  query {
+    people {
+  		name
+      age
+    }
+  }
+
+  // 응답
+  {
+    "data": {
+      "people": [
+        {
+          "name": "chogyejin",
+          "age": 27
+        },
+        {
+          "name": "Jisu",
+          "age": 18
+        },
+        {
+          ...
+        }
+      ]
+    }
+  }
+
+  ```
+
+## args 활용
+
+1. db.js에서 object return하는 getById 작성
+2. resolvers.js에서 person Query에 getById로 응답하게 작성
+3. Playground에서 확인
+
+```
+ // 요청
+ // 요청 보낼 때 resolver의 return에 console.log 확인 가능
+ {
+   person(id: 0){ // id 0번을 보내면
+     name
+   }
+ }
+
+ // 응답 : filter를 거쳐 name 돌려줌
+ {
+   "data": {
+     "person": {
+       "name": "chogyejin"
+     }
+   }
+ }
+
+```
