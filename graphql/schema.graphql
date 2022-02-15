@@ -1,9 +1,11 @@
-type Chogyejin {
+type Person {
+  id: Int!
   name: String!
   age: Int!
   gender: String!
 }
 
 type Query {
-  person: Chogyejin! # ! : 필수
+  people: [Person]! # 다수의 person, array
+  person(id: Int!): Person
 }
