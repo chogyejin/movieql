@@ -1,11 +1,14 @@
-type Person {
+type Movie {
   id: Int!
   name: String!
-  age: Int!
-  gender: String!
+  score: Int!
 }
 
 type Query {
-  people: [Person]! # 다수의 person, array
-  person(id: Int!): Person
+  movies: [Movie]!
+  movie(id: Int!): Movie
+}
+
+type Mutation {
+  addMovie(name: String!, score: Int!): Movie! # id는 DB에 의해 자동 생성
 }
