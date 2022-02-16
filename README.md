@@ -185,3 +185,88 @@ query {
  }
 
 ```
+
+# Defining Mutation
+
+- Mutation에 앞서 schema.graphql, resolvers.js, db.js를 사람에서 영화 관련으로 변경
+
+```
+// 요청
+{
+  movies {
+    name
+  }
+}
+
+// 응답
+{
+  "data": {
+    "movies": [
+      {
+        "name": "Star Wars - The new one"
+      },
+      {
+        "name": "Avengers - The new one"
+      },
+      {
+        "name": "The Godfather I"
+      },
+      {
+        "name": "Logan"
+      }
+    ]
+  }
+}
+```
+
+- Mutation은 DB의 상태가 변할 때 사용(change of state) : Create, Update, Delete
+
+- schema.graphql에 정의한 type에 따라 Playground에서 Query나 Mutation 요청을 할 수 있음
+
+```
+// 요청
+mutation {
+  addMovie(name: "명량", score: 5) {
+    name
+  }
+}
+
+// 응답
+{
+  "data": {
+    "addMovie": {
+      "name": "명량"
+    }
+  }
+}
+
+// Mutation 이후 요청
+{
+  movies{
+    name
+  }
+}
+
+// 응답
+{
+  "data": {
+    "movies": [
+      {
+        "name": "Star Wars - The new one"
+      },
+      {
+        "name": "Avengers - The new one"
+      },
+      {
+        "name": "The Godfather I"
+      },
+      {
+        "name": "Logan"
+      },
+      {
+        "name": "명량"
+      }
+    ]
+  }
+}
+```
