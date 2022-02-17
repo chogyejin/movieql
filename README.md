@@ -291,3 +291,48 @@ mutation {
 - id 값을 movies.length로 할 경우 중복되는 일이 생길 수 있음
   - addMoive()에서 Date.now()를 이용하여 생성
   - schema에서 id를 Float형으로 받을 수 있게 변경
+
+# Wrapping a REST API with GraphQL
+
+- 오픈 API 이용하여 REST를 GraphQL로 감싸기
+
+1. db.js에 REST API URL 변수 할당
+
+   - YTS API 이용, chrome 확장프로그램 JSONVue 설치
+
+2. getMovies() 함수 정의
+
+   - limit, rating을 매개변수로 받음
+   - node-fetch 이용(@2.6.5)
+
+3. schema.graphql에서 문서에 맞게 schema 재정의
+
+   - Playground에서 확인 가능
+
+   ```
+   // 요청
+   query {
+     movies {
+       id
+       title
+       summary
+       rating
+     }
+   }
+
+   // 응답
+   {
+     "data": {
+      "movies": [
+        {
+          "id": 40079,
+          "title": "Erax",
+          "summary": "During a sleepover, Auntie Opal and her niece Nina accidentally release the mythical and dangerous Erax creatures that must be returned to the storybook from which they escaped.",
+          "rating": 0
+        },
+        {
+        ...
+        },
+      ]
+    }
+   ```
