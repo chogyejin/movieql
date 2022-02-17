@@ -224,6 +224,7 @@ query {
 - schema.graphql에 정의한 type에 따라 Playground에서 Query나 Mutation 요청을 할 수 있음
 
 ```
+// Create
 // 요청
 mutation {
   addMovie(name: "명량", score: 5) {
@@ -232,6 +233,7 @@ mutation {
 }
 
 // 응답
+// Movie를 return 하기 때문에 subfield를 명시해야함
 {
   "data": {
     "addMovie": {
@@ -270,3 +272,22 @@ mutation {
   }
 }
 ```
+
+```
+// Delete
+// 요청
+mutation {
+  deleteMovie(id: 1645105329318)
+}
+
+// 응답
+{
+  "data": {
+    "deleteMovie": true
+  }
+}
+```
+
+- id 값을 movies.length로 할 경우 중복되는 일이 생길 수 있음
+  - addMoive()에서 Date.now()를 이용하여 생성
+  - schema에서 id를 Float형으로 받을 수 있게 변경
