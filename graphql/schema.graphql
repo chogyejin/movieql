@@ -1,14 +1,15 @@
 type Movie {
-  id: Int!
+  id: Float!
   name: String!
   score: Int!
 }
 
 type Query {
   movies: [Movie]!
-  movie(id: Int!): Movie
+  movie(id: Float!): Movie
 }
 
 type Mutation {
   addMovie(name: String!, score: Int!): Movie! # id는 DB에 의해 자동 생성
+  deleteMovie(id: Float!): Boolean! # return true or false
 }
