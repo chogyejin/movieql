@@ -323,16 +323,63 @@ mutation {
    // 응답
    {
      "data": {
-      "movies": [
-        {
-          "id": 40079,
-          "title": "Erax",
-          "summary": "During a sleepover, Auntie Opal and her niece Nina accidentally release the mythical and dangerous Erax creatures that must be returned to the storybook from which they escaped.",
-          "rating": 0
-        },
-        {
-        ...
-        },
-      ]
-    }
+       "movies": [
+         {
+           "id": 40079,
+           "title": "Erax",
+           "summary": "During a sleepover, Auntie Opal and her niece Nina accidentally release the mythical and dangerous Erax creatures that must be returned to the storybook from which they escaped.",
+           "rating": 0
+         },
+         {
+          ...
+         },
+       ]
+     }
+   }
+   ```
+
+4. db.js에서 getMovie() 함수에 limit과 rating을 활용하도록 URL 변수 선언
+
+   - 이에 맞게 schema.graphql과 resolvers.js도 수정
+
+   ```
+   // 요청
+   query {
+     movies(limit: 6, rating: 8.5) {
+       title
+       rating
+     }
+   }
+
+   // 응답
+   {
+     "data": {
+       "movies": [
+         {
+           "title": "TQM",
+           "rating": 8.6
+         },
+         {
+           "title": "The Backward Class",
+           "rating": 8.9
+         },
+         {
+           "title": "Paper & Glue",
+           "rating": 8.5
+         },
+         {
+           "title": "Much Ado About Nothing",
+           "rating": 8.6
+         },
+         {
+           "title": "30 for 30 The Four Falls of Buffalo",
+           "rating": 8.5
+         },
+         {
+           "title": "Godspeed, Los Polacos!",
+           "rating": 8.9
+         }
+       ]
+     }
+   }
    ```
