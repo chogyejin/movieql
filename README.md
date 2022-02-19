@@ -383,3 +383,53 @@ mutation {
      }
    }
    ```
+
+# Final
+
+- 웹에 접속하면 모든 영화 나온다(getMovies).
+
+- 그 중 하나를 클릭하면 해당 영화 정보(getMovie)와 4개의 추천 영화들을 보여준다(getSuggestions).
+
+  - 한 번의 요청으로 두 가지 Query를 얻을 수 있다(Under-fetching 해결).
+
+  ```
+  // 요청
+  query {
+    ovie(id: 37384) {
+      title
+      id
+    }
+    suggestions(id: 37384) {
+      title
+      rating
+    }
+  }
+
+  // 응답
+  {
+    "data": {
+      "movie": {
+        "title": "Jai Bhim",
+        "id": 37384
+      },
+      "suggestions": [
+        {
+          "title": "The Dry",
+          "rating": 6.9
+        },
+        {
+          "title": "Crook: It's Good to Be Bad",
+          "rating": 5.1
+        },
+        {
+          "title": "Kemper on Kemper: Inside the Mind of a Serial Killer",
+          "rating": 6.9
+        },
+        {
+          "title": "Divines",
+          "rating": 7.4
+        }
+      ]
+    }
+  }
+  ```
